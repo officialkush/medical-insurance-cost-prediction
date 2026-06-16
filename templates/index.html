@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Insurance Cost Estimator</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:30px;
+        }
+
+        .main-container{
+            width:100%;
+            max-width:1200px;
+            display:grid;
+            grid-template-columns:1fr 1.2fr;
+            gap:25px;
+        }
+
+        .info-card,
+        .form-card{
+            background:rgba(255,255,255,0.97);
+            border-radius:20px;
+            padding:30px;
+            box-shadow:0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .info-card h2{
+            color:#203a43;
+            margin-bottom:15px;
+        }
+
+        .info-card p{
+            color:#555;
+            line-height:1.7;
+            margin-bottom:20px;
+        }
+
+        .feature{
+            background:#f4f8fb;
+            padding:14px;
+            border-radius:12px;
+            margin-bottom:12px;
+            color:#2c5364;
+            line-height:1.6;
+        }
+
+        .bmi-box{
+            margin-top:25px;
+            background:#eef8ff;
+            padding:20px;
+            border-radius:15px;
+        }
+
+        .bmi-box h3{
+            color:#203a43;
+            margin-bottom:10px;
+        }
+
+        .bmi-box p{
+            margin-bottom:10px;
+        }
+
+        .bmi-box ul{
+            margin-left:20px;
+            color:#555;
+            line-height:1.8;
+        }
+
+        .form-card h1{
+            text-align:center;
+            color:#203a43;
+            margin-bottom:10px;
+        }
+
+        .subtitle{
+            text-align:center;
+            color:#666;
+            margin-bottom:25px;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:15px;
+        }
+
+        .form-group{
+            margin-bottom:15px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:6px;
+            font-weight:600;
+            color:#333;
+        }
+
+        input,
+        select{
+            width:100%;
+            padding:12px;
+            border:1px solid #d6d6d6;
+            border-radius:10px;
+            font-size:15px;
+        }
+
+        input:focus,
+        select:focus{
+            outline:none;
+            border-color:#2c5364;
+        }
+
+        .btn-row{
+            display:grid;
+            grid-template-columns:2fr 1fr;
+            gap:12px;
+            margin-top:10px;
+        }
+
+        .predict-btn{
+            background:#2c5364;
+            color:white;
+            border:none;
+            padding:14px;
+            border-radius:10px;
+            cursor:pointer;
+            font-size:16px;
+            font-weight:600;
+        }
+
+        .predict-btn:hover{
+            background:#203a43;
+        }
+
+        .reset-btn{
+            background:#e5e5e5;
+            color:#333;
+            border:none;
+            padding:14px;
+            border-radius:10px;
+            cursor:pointer;
+            font-size:16px;
+            font-weight:600;
+        }
+
+        .result{
+            margin-top:25px;
+            padding:18px;
+            border-radius:12px;
+            text-align:center;
+            background:#e8f5e9;
+            color:#1b5e20;
+            font-size:22px;
+            font-weight:bold;
+            border:1px solid #c8e6c9;
+        }
+
+        .note{
+            margin-top:20px;
+            text-align:center;
+            color:#777;
+            font-size:13px;
+            line-height:1.6;
+        }
+
+        @media(max-width:900px){
+            .main-container{
+                grid-template-columns:1fr;
+            }
+
+            .grid{
+                grid-template-columns:1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="main-container">
+
+    <div class="info-card">
+
+        <h2>🏥 Medical Insurance Estimator</h2>
+
+        <p>
+            Medical insurance costs are influenced by several personal and lifestyle
+            factors. By providing the details requested in the form, you can receive
+            an estimated insurance cost based on commonly used risk indicators.
+        </p>
+
+        <div class="feature">
+            📅 <strong>Age</strong> — Insurance costs may increase with age due to higher healthcare risks.
+        </div>
+
+        <div class="feature">
+            ⚖️ <strong>BMI</strong> — Body Mass Index helps assess weight-related health risks.
+        </div>
+
+        <div class="feature">
+            🚭 <strong>Smoking Status</strong> — Smoking is one of the most significant factors affecting insurance premiums.
+        </div>
+
+        <div class="feature">
+            👨‍👩‍👧‍👦 <strong>Dependents</strong> — The number of children or dependents may influence overall coverage costs.
+        </div>
+
+        <div class="feature">
+            📍 <strong>Region</strong> — Insurance pricing can vary across different geographical regions.
+        </div>
+
+        <div class="bmi-box">
+            <h3>🧮 What is BMI?</h3>
+
+            <p>
+                <strong>Body Mass Index (BMI)</strong> is a measurement that uses
+                height and weight to estimate whether a person is within a healthy
+                weight range.
+            </p>
+
+            <p>
+                BMI is often considered when assessing health-related risks and may
+                influence insurance costs.
+            </p>
+
+            <p>
+                <strong>Formula:</strong> BMI = Weight (kg) ÷ Height² (m²)
+            </p>
+
+            <hr style="margin:15px 0;">
+
+            <h3>📊 BMI Categories</h3>
+
+            <ul>
+                <li><strong>Below 18.5</strong> — Underweight</li>
+                <li><strong>18.5 – 24.9</strong> — Normal Weight</li>
+                <li><strong>25 – 29.9</strong> — Overweight</li>
+                <li><strong>30 and Above</strong> — Obese</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="form-card">
+
+        <h1>Predict Medical Insurance Cost</h1>
+        <p class="subtitle">Fill in your details below</p>
+
+        <form action="/predict" method="POST">
+
+            <div class="grid">
+
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" name="age" placeholder="Enter Age" required>
+                </div>
+
+                <div class="form-group">
+                    <label>BMI</label>
+                    <input type="number" step="0.01" name="bmi" placeholder="Enter BMI" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Gender</label>
+                    <select name="sex" required>
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Children</label>
+                    <input type="number" name="children" placeholder="Number of Children" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Smoker</label>
+                    <select name="smoker" required>
+                        <option value="">Select Option</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Region</label>
+                    <select name="region" required>
+                        <option value="">Select Region</option>
+                        <option value="northeast">Northeast</option>
+                        <option value="northwest">Northwest</option>
+                        <option value="southeast">Southeast</option>
+                        <option value="southwest">Southwest</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="btn-row">
+                <button type="submit" class="predict-btn">
+                    Predict Cost
+                </button>
+
+                <button type="reset" class="reset-btn">
+                    Reset
+                </button>
+            </div>
+
+        </form>
+
+        {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+
+        <div class="note">
+            This estimate is generated based on the information provided and should be used for informational purposes only.
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
